@@ -1,0 +1,47 @@
+{
+  "compilerOptions": {
+    "baseUrl": "src",
+    "target": "es5",
+    "module": "esnext",
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
+    "allowJs": false,
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "jsx": "react-jsx",
+    "rootDir": ".",
+    "declaration": true,
+    "strict": true,
+    "alwaysStrict": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "strictNullChecks": true,
+    "noImplicitThis": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "experimentalDecorators": true,
+    "esModuleInterop": true,
+    "sourceMap": true,
+    "removeComments": true,
+    "allowSyntheticDefaultImports": true,
+    "noFallthroughCasesInSwitch": true,
+    "noEmit": true
+  },
+  "include": [
+    "**/*.ts",
+    "**/*.tsx"
+  ],
+  "exclude": [
+    "node_modules",
+    "public"
+  ],
+  "typeAcquisition": {
+    "include": [
+      "jest"
+    ]
+  }
+}
