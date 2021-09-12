@@ -1,5 +1,6 @@
 import { Question } from 'types';
 import { assign, createMachine } from 'xstate';
+import { gameConfig } from '../../config/gameConfig';
 import { fetchQuestions } from '../../networking/fetchQuestions';
 
 export interface GameContext {
@@ -31,7 +32,7 @@ export const gameStateMachine = createMachine<GameContext, GameEvent>(
         entry: 'resetCurrentIndex',
         invoke: {
           id: 'fetchQuestions',
-          src: () => fetchQuestions(10), // TODO 10
+          src: () => fetchQuestions(gameConfig.amountOfQuestions),
           onDone: {
             target: 'playing',
             actions: 'saveQuestions',
@@ -93,7 +94,7 @@ export const gameStateMachine = createMachine<GameContext, GameEvent>(
         const asnweredQuestions = context.questions.filter(
           (question) => question.answer !== undefined
         );
-        return asnweredQuestions.length === 10; // TODO 10
+        return asnweredQuestions.length === gameConfig.amountOfQuestions;
       },
     },
   }

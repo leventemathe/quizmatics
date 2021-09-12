@@ -2,6 +2,7 @@ import { Page } from 'components/ui';
 import { styled } from '@material-ui/core/styles';
 import { Button, Typography } from '@material-ui/core';
 import { useGameState } from 'state/game';
+import { gameConfig } from 'config/gameConfig';
 
 const StartButton = styled(Button)({
   margin: '0 auto',
@@ -17,7 +18,7 @@ export const Start = () => {
         Welcome to the Trivia Challenge!
       </Typography>
       <Typography align="center" variant="body1">
-        You will be presented with 10 True or False questions.
+        {`You will be presented with ${gameConfig.amountOfQuestions} True or False questions.`}
       </Typography>
       <Typography align="center" variant="body1">
         Can you score a 100%?
