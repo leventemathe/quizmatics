@@ -7,6 +7,8 @@ const QuestionCard = styled(Card)({
   padding: '3rem',
   margin: '0 auto',
   marginBottom: '1rem',
+
+  wordBreak: 'break-word',
 });
 
 const ButtonBox = styled(Box)({

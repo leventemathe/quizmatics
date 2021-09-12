@@ -12,6 +12,8 @@ const ResultItem = styled(Box)({
   '&>*:first-child': {
     marginRight: '1rem',
   },
+
+  wordBreak: 'break-word',
 });
 
 export const Result = () => {

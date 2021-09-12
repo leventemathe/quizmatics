@@ -5,15 +5,26 @@ import { ChildrenProps } from 'types';
 const PageStyles = styled(Box)({
   display: 'grid',
   placeItems: 'center',
-  height: '100vh',
+  minHeight: '100vh',
 });
 
-const Content = styled(Box)({
-  '&>*': {
+const Content = styled(Box)(({ theme: { breakpoints } }) => ({
+  margin: '1rem auto',
+
+  '&>*:not(:last-child)': {
     marginBottom: '1rem',
   },
-  width: '50%',
-});
+
+  [breakpoints.down('sm')]: {
+    width: '90%',
+  },
+  [breakpoints.up('md')]: {
+    width: '75%',
+  },
+  [breakpoints.up('lg')]: {
+    width: '50%',
+  },
+}));
 
 export const Page = ({ children }: ChildrenProps) => (
   <PageStyles>
