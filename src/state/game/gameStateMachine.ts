@@ -36,12 +36,12 @@ export const gameStateMachine = createMachine<GameContext, GameEvent>(
             actions: 'saveQuestions',
           },
           onError: {
-            target: 'failure',
+            target: 'error',
             actions: 'saveAnswer',
           },
         },
       },
-      failure: {
+      error: {
         on: {
           RESTART: 'loading',
         },

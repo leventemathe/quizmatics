@@ -1,10 +1,11 @@
-import { useSelector } from '@xstate/react';
+import { useActor, useSelector } from '@xstate/react';
 import React from 'react';
 import { GameContext } from './GameContext';
 
 export const useGameState = () => {
   const services = React.useContext(GameContext);
   const { gameService } = services;
+  const [gameState] = useActor(gameService);
 
   const questions = useSelector(
     gameService,
@@ -23,5 +24,6 @@ export const useGameState = () => {
     currentIndex,
     error,
     send: gameService.send,
+    state: gameState,
   };
 };
