@@ -20,10 +20,10 @@ export const useGameState = () => {
   const error = useSelector(gameService, (state) => state.context.error);
 
   return {
+    state: gameState,
     questions,
     currentIndex,
     error,
     send: gameService.send,
-    state: gameState,
   };
 };
