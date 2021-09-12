@@ -41,3 +41,25 @@ test('can post some data', async () => {
   });
   expect(result).toBe(expectedResult);
 });
+
+test('can handle error codes', async () => {
+  (axios.request as jest.Mock).mockRejectedValue({ response: 'somehting ' });
+
+  await expect(request('someUrl')).rejects.toThrow(
+    /Server responded with error/i
+  );
+});
+
+test('can handle unresponsive server', async () => {
+  (axios.request as jest.Mock).mockRejectedValue({ request: 'somehting ' });
+
+  await expect(request('someUrl')).rejects.toThrow(
+    /The server is not available/i
+  );
+});
+
+test('can handle client error', async () => {
+  (axios.request as jest.Mock).mockRejectedValue({});
+
+  await expect(request('someUrl')).rejects.toThrow(/A client error happened/i);
+});

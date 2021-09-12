@@ -59,6 +59,6 @@ export async function request<Resource = unknown, Body = void>(
 
     return response.data as Resource;
   } catch (error) {
-    return createCustomError(error as AxiosError);
+    throw createCustomError(error as AxiosError);
   }
 }
