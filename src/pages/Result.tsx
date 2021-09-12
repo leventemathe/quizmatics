@@ -27,7 +27,7 @@ export const Result = () => {
         {`${getScore()}/${getTotal()}`}
       </Typography>
       {questions.map((question) => (
-        <ResultItem>
+        <ResultItem key={question.question}>
           {isAnswerCorrect(question) ? (
             <AddCircleOutlineIcon />
           ) : (
