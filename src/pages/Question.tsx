@@ -1,19 +1,21 @@
-import { Box, Button, Typography } from '@material-ui/core';
+import { Box, Button, Card, Typography } from '@material-ui/core';
 import { styled } from '@material-ui/styles';
 import { Page } from 'components/ui';
 import { useGameState } from 'state/game';
 
-const QuestionBox = styled(Box)({
-  display: 'grid',
-  placeItems: 'center',
-  border: '1px solid black',
+const QuestionCard = styled(Card)({
   padding: '3rem',
+  margin: '0 auto',
   marginBottom: '1rem',
 });
 
 const ButtonBox = styled(Box)({
   display: 'flex',
-  justifyContent: 'space-between',
+  justifyContent: 'center',
+
+  '&>*': {
+    margin: '0.5rem',
+  },
 });
 
 export const Question = () => {
@@ -25,11 +27,11 @@ export const Question = () => {
       <Typography align="center" variant="h5">
         {question.category}
       </Typography>
-      <QuestionBox>
+      <QuestionCard>
         <Typography align="center" variant="h5">
           {question.question}
         </Typography>
-      </QuestionBox>
+      </QuestionCard>
       <Typography align="center" variant="body1">
         {`${currentIndex + 1}/${getTotal()}`}
       </Typography>

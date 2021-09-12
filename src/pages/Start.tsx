@@ -15,7 +15,7 @@ export const Start = () => {
         {`You will be presented with ${gameConfig.amountOfQuestions} True or False questions.`}
       </Typography>
       <Typography align="center" variant="body1">
-        Can you score a 100%?
+        Can you score 100%?
       </Typography>
       <CenteredButton
         variant="contained"

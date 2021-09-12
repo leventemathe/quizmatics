@@ -12,6 +12,7 @@ const Content = styled(Box)({
   '&>*': {
     marginBottom: '1rem',
   },
+  width: '50%',
 });
 
 export const Page = ({ children }: ChildrenProps) => (
