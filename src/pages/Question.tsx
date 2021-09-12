@@ -44,7 +44,7 @@ export const Question = () => {
         </Button>
         <Button
           variant="contained"
-          color="primary"
+          color="secondary"
           onClick={() => send({ type: 'ANSWER', answer: false })}
         >
           FALSE
