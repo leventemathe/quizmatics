@@ -1,5 +1,6 @@
 import { Question } from 'types';
 import { buildFetchQuestionsUrl } from 'config';
+import { decode } from 'html-entities';
 import { request } from './request';
 
 interface QuestionFromApi {
@@ -16,6 +17,7 @@ interface Result {
 const formatResult = (questions: QuestionFromApi[]): Question[] =>
   questions.map((question) => ({
     ...question,
+    question: decode(question.question),
     correctAnswer: question.correct_asnwer === 'True',
   }));
 
