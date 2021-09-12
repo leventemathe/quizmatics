@@ -8,6 +8,14 @@ const PageStyles = styled(Box)({
   height: '100vh',
 });
 
+const Content = styled(Box)({
+  '&>*': {
+    marginBottom: '1rem',
+  },
+});
+
 export const Page = ({ children }: ChildrenProps) => (
-  <PageStyles>{children}</PageStyles>
+  <PageStyles>
+    <Content>{children}</Content>
+  </PageStyles>
 );
