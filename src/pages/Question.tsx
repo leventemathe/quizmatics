@@ -17,9 +17,8 @@ const ButtonBox = styled(Box)({
 });
 
 export const Question = () => {
-  const { send, questions, currentIndex } = useGameState();
+  const { send, questions, currentIndex, getTotal } = useGameState();
   const question = questions[currentIndex];
-  const count = questions.length;
 
   return (
     <Page>
@@ -32,7 +31,7 @@ export const Question = () => {
         </Typography>
       </QuestionBox>
       <Typography align="center" variant="body1">
-        {`${currentIndex + 1}/${count}`}
+        {`${currentIndex + 1}/${getTotal()}`}
       </Typography>
       <ButtonBox>
         <Button

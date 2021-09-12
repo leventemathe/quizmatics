@@ -7,7 +7,7 @@ interface QuestionFromApi {
   category: string;
   question: string;
   // eslint-disable-next-line camelcase
-  correct_asnwer: 'True' | 'False';
+  correct_answer: 'True' | 'False';
 }
 
 interface Result {
@@ -18,7 +18,7 @@ const formatResult = (questions: QuestionFromApi[]): Question[] =>
   questions.map((question) => ({
     ...question,
     question: decode(question.question),
-    correctAnswer: question.correct_asnwer === 'True',
+    correctAnswer: question.correct_answer === 'True',
   }));
 
 export const fetchQuestions = async (amount = 10) => {

@@ -5,6 +5,7 @@
   "private": true,
   "dependencies": {
     "@material-ui/core": "^4.12.3",
+    "@material-ui/icons": "^4.11.2",
     "@xstate/react": "^1.6.1",
     "add": "^2.0.6",
     "axios": "^0.21.1",

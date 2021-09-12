@@ -1,5 +1,6 @@
 import { useActor, useSelector } from '@xstate/react';
 import React from 'react';
+import { Question } from 'types';
 import { GameContext } from './GameContext';
 
 export const useGameState = () => {
@@ -19,11 +20,25 @@ export const useGameState = () => {
 
   const error = useSelector(gameService, (state) => state.context.error);
 
+  const isAnswerCorrect = (question: Question) =>
+    question.answer === question.correctAnswer;
+
+  const getScore = () =>
+    questions.reduce(
+      (accum, curr) => accum + (isAnswerCorrect(curr) ? 1 : 0),
+      0
+    );
+
+  const getTotal = () => questions.length;
+
   return {
     state: gameState,
     questions,
     currentIndex,
     error,
     send: gameService.send,
+    isAnswerCorrect,
+    getScore,
+    getTotal,
   };
 };

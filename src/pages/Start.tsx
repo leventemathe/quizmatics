@@ -1,13 +1,7 @@
-import { Page } from 'components/ui';
-import { styled } from '@material-ui/core/styles';
-import { Button, Typography } from '@material-ui/core';
+import { Page, CenteredButton } from 'components/ui';
+import { Typography } from '@material-ui/core';
 import { useGameState } from 'state/game';
 import { gameConfig } from 'config/gameConfig';
-
-const StartButton = styled(Button)({
-  margin: '0 auto',
-  display: 'block',
-});
 
 export const Start = () => {
   const { send } = useGameState();
@@ -23,13 +17,13 @@ export const Start = () => {
       <Typography align="center" variant="body1">
         Can you score a 100%?
       </Typography>
-      <StartButton
+      <CenteredButton
         variant="contained"
         color="primary"
         onClick={() => send('START')}
       >
         BEGIN
-      </StartButton>
+      </CenteredButton>
     </Page>
   );
 };
