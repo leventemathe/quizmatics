@@ -39,7 +39,7 @@ export const gameStateMachine = createMachine<GameContext, GameEvent>(
           },
           onError: {
             target: 'error',
-            actions: 'saveAnswer',
+            actions: 'saveError',
           },
         },
       },
