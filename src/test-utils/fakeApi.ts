@@ -1,4 +1,4 @@
-import { faker } from 'test-utils';
+import faker from 'faker';
 import { gameConfig } from 'config/gameConfig';
 
 const getAnswerFromBool = (bool: boolean) => (bool ? 'True' : 'False');

@@ -1,8 +1,7 @@
 import { interpret } from 'xstate';
 import { request } from 'networking';
 import { gameConfig } from 'config/gameConfig';
-import { generateFakeQuestionApiResponse } from 'test-utils/fakeApi';
-import { faker } from 'test-utils';
+import { generateFakeQuestionApiResponse, faker } from 'test-utils';
 import { gameStateMachine } from './gameStateMachine';
 
 jest.mock('networking/request');

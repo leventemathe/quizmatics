@@ -9,6 +9,6 @@ const Spinner = styled(CircularProgress)({
 
 export const Loading = () => (
   <Page>
-    <Spinner />
+    <Spinner data-testid="loadingSpinner" />
   </Page>
 );
