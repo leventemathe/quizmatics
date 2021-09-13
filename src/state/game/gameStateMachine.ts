@@ -1,7 +1,7 @@
 import { Question } from 'types';
 import { assign, createMachine } from 'xstate';
-import { gameConfig } from '../../config/gameConfig';
-import { fetchQuestions } from '../../networking/fetchQuestions';
+import { gameConfig } from 'config';
+import { fetchQuestions } from 'networking';
 
 export interface GameContext {
   questions: Question[];

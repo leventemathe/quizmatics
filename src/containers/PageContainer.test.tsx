@@ -6,7 +6,7 @@ import {
   userEvent,
 } from 'test-utils';
 import { request } from 'networking';
-import { gameConfig } from 'config/gameConfig';
+import { gameConfig } from 'config';
 
 jest.mock('networking/request');
 

@@ -1,6 +1,6 @@
 import { interpret } from 'xstate';
-import { request } from 'networking';
-import { gameConfig } from 'config/gameConfig';
+import { request } from 'networking/request';
+import { gameConfig } from 'config';
 import { generateFakeQuestionApiResponse, faker } from 'test-utils';
 import { gameStateMachine } from './gameStateMachine';
 

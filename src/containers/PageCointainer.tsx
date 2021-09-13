@@ -1,8 +1,4 @@
-import { Error } from 'pages/Error';
-import { Loading } from 'pages/Loading';
-import { Question } from 'pages/Question';
-import { Result } from 'pages/Result';
-import { Start } from 'pages/Start';
+import { Error, Loading, Question, Result, Start } from 'pages';
 import { useGameState } from 'state/game';
 
 export const PageContainer = () => {
