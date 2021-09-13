@@ -52,6 +52,7 @@ test('the game correctly handles failing fetch', (done) => {
     if (state.matches('error')) {
       expect(request).toHaveBeenCalledTimes(1);
       expect(state.context.questions.length).toBe(0);
+      expect(state.context.error).not.toBeUndefined();
       expect(state.context.currentIndex).toBe(0);
       done();
     }
@@ -85,13 +86,14 @@ test('the game can restart from the error state', (done) => {
 
 test('can answer a question', (done) => {
   let answerCount = 0;
+  const answer = faker.datatype.boolean();
 
   const gameService = interpret(gameStateMachine).onTransition((state) => {
     if (state.matches('playing')) {
       if (answerCount === 0) {
-        gameService.send({ type: 'ANSWER', answer: faker.datatype.boolean() });
+        gameService.send({ type: 'ANSWER', answer });
       } else {
-        expect(state.context.questions[0].answer).not.toBeUndefined();
+        expect(state.context.questions[0].answer).toBe(answer);
         done();
       }
 
