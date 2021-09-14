@@ -26,15 +26,15 @@ export const Question = () => {
 
   return (
     <Page>
-      <Typography align="center" variant="h5">
+      <Typography data-testid="categoryTitle" align="center" variant="h5">
         {currentQuestion.category}
       </Typography>
       <QuestionCard>
-        <Typography align="center" variant="h5">
+        <Typography data-testid="questionText" align="center" variant="h5">
           {currentQuestion.question}
         </Typography>
       </QuestionCard>
-      <Typography align="center" variant="body1">
+      <Typography data-testid="counterText" align="center" variant="body1">
         {`${currentIndex + 1}/${total}`}
       </Typography>
       <ButtonBox>
