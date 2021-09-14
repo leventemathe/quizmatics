@@ -1,18 +1,7 @@
-import { Question } from 'types';
 import { assign, createMachine } from 'xstate';
 import { gameConfig } from 'config';
 import { fetchQuestions } from 'networking';
-
-export interface GameContext {
-  questions: Question[];
-  currentIndex: number;
-  error?: Error;
-}
-
-export type GameEvent =
-  | { type: 'START' }
-  | { type: 'ANSWER'; answer: string }
-  | { type: 'RESTART' };
+import { GameContext, GameEvent } from 'types';
 
 const resetCurrentIndex = assign<GameContext, GameEvent>({
   currentIndex: 0,
