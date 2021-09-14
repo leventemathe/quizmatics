@@ -1,7 +1,6 @@
 import { assign, createMachine } from 'xstate';
 import { gameConfig } from 'config';
-import { fetchQuestions } from 'networking';
-import { GameContext, GameEvent } from 'types';
+import { GameContext, GameEvent, FetchQuestions } from 'types';
 
 const resetCurrentIndex = assign<GameContext, GameEvent>({
   currentIndex: 0,
@@ -38,65 +37,66 @@ const canFinishGame = (context: GameContext) => {
   return asnweredQuestions.length === gameConfig.amountOfQuestions;
 };
 
-export const gameStateMachine = createMachine<GameContext, GameEvent>(
-  {
-    id: 'game',
-    initial: 'idle',
-    context: {
-      questions: [],
-      currentIndex: 0,
-    },
-    states: {
-      idle: {
-        on: {
-          START: 'loading',
-        },
+export const createGameStateMachine = (fetchQuestions: FetchQuestions) =>
+  createMachine<GameContext, GameEvent>(
+    {
+      id: 'game',
+      initial: 'idle',
+      context: {
+        questions: [],
+        currentIndex: 0,
       },
-      loading: {
-        entry: 'resetCurrentIndex',
-        invoke: {
-          id: 'fetchQuestions',
-          src: () => fetchQuestions(gameConfig.amountOfQuestions),
-          onDone: {
-            target: 'playing',
-            actions: 'saveQuestions',
-          },
-          onError: {
-            target: 'error',
-            actions: 'saveError',
+      states: {
+        idle: {
+          on: {
+            START: 'loading',
           },
         },
-      },
-      error: {
-        on: {
-          RESTART: 'loading',
-        },
-      },
-      playing: {
-        on: {
-          ANSWER: {
-            target: 'playing',
-            actions: 'saveAnswer',
+        loading: {
+          entry: 'resetCurrentIndex',
+          invoke: {
+            id: 'fetchQuestions',
+            src: () => fetchQuestions(gameConfig.amountOfQuestions),
+            onDone: {
+              target: 'playing',
+              actions: 'saveQuestions',
+            },
+            onError: {
+              target: 'error',
+              actions: 'saveError',
+            },
           },
         },
-        always: { target: 'finished', cond: 'canFinishGame' },
-      },
-      finished: {
-        on: {
-          RESTART: 'loading',
+        error: {
+          on: {
+            RESTART: 'loading',
+          },
+        },
+        playing: {
+          on: {
+            ANSWER: {
+              target: 'playing',
+              actions: 'saveAnswer',
+            },
+          },
+          always: { target: 'finished', cond: 'canFinishGame' },
+        },
+        finished: {
+          on: {
+            RESTART: 'loading',
+          },
         },
       },
     },
-  },
-  {
-    actions: {
-      resetCurrentIndex,
-      saveQuestions,
-      saveError,
-      saveAnswer,
-    },
-    guards: {
-      canFinishGame,
-    },
-  }
-);
+    {
+      actions: {
+        resetCurrentIndex,
+        saveQuestions,
+        saveError,
+        saveAnswer,
+      },
+      guards: {
+        canFinishGame,
+      },
+    }
+  );

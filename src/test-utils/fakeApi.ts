@@ -1,9 +1,10 @@
+import { Question } from 'types';
 import faker from 'faker';
 import { gameConfig } from 'config';
 
-const getAnswerFromBool = (bool: boolean) => (bool ? 'True' : 'False');
+export const getAnswerFromBool = (bool: boolean) => (bool ? 'True' : 'False');
 
-export const generateFakeQuestions = () => {
+export const generateFakeApiQuestions = () => {
   const questions = [];
 
   for (let i = 0; i < gameConfig.amountOfQuestions; i += 1) {
@@ -24,5 +25,21 @@ export const generateFakeQuestions = () => {
 
 export const generateFakeQuestionApiResponse = () => ({
   response_code: 0,
-  results: generateFakeQuestions(),
+  results: generateFakeApiQuestions(),
 });
+
+export const generateFakeQuestions = (): Question[] => {
+  const questions = [];
+
+  for (let i = 0; i < gameConfig.amountOfQuestions; i += 1) {
+    const correctAnswer = faker.datatype.boolean();
+
+    questions.push({
+      category: faker.name.title(),
+      question: faker.name.title(),
+      correctAnswer: getAnswerFromBool(correctAnswer),
+    });
+  }
+
+  return questions;
+};

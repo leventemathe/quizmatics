@@ -12,3 +12,5 @@ export type GameEvent =
   | { type: 'START' }
   | { type: 'ANSWER'; answer: string }
   | { type: 'RESTART' };
+
+export type FetchQuestions = (amount: number) => Promise<Question[]>;

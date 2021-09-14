@@ -1,25 +1,9 @@
 import { PageContainer } from 'containers';
-import {
-  render,
-  screen,
-  generateFakeQuestionApiResponse,
-  userEvent,
-} from 'test-utils';
-import { request } from 'networking/request';
+import { render, screen, userEvent } from 'test-utils';
 import { gameConfig } from 'config';
 
-jest.mock('networking/request');
-
-beforeEach(() => {
-  (request as jest.Mock).mockResolvedValue(generateFakeQuestionApiResponse());
-});
-
-afterEach(() => {
-  jest.resetAllMocks();
-});
-
-const startGame = async () => {
-  render(<PageContainer />);
+const startGame = async (fetchQuestions?: jest.Mock) => {
+  render(<PageContainer />, { fetchQuestions });
 
   const startButton = screen.getByRole('button');
   userEvent.click(startButton);
@@ -58,15 +42,13 @@ test('loading page transitions to question page after successful fetch', async (
 });
 
 test('loading page can handle errors, and transitions to error page', async () => {
-  (request as jest.Mock).mockRejectedValue({});
-  await startGame();
+  await startGame(jest.fn().mockRejectedValue({}));
 
   await screen.findByText(/error/i);
 });
 
 test('clicking the restart button on the error page should transition to the loading page', async () => {
-  (request as jest.Mock).mockRejectedValue({});
-  await startGame();
+  await startGame(jest.fn().mockRejectedValue({}));
 
   const restartButton = await screen.findByText(/retry/i);
   userEvent.click(restartButton);

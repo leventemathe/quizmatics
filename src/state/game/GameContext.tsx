@@ -1,17 +1,10 @@
 import React from 'react';
 import { Interpreter } from 'xstate';
-import {
-  GameContext as GameStateContext,
-  GameEvent,
-  gameStateMachine,
-} from './gameStateMachine';
+import { GameContext as GameStateContext, GameEvent } from 'types';
 
 interface GameContextType {
-  gameService: Interpreter<
-    GameStateContext,
-    typeof gameStateMachine.states,
-    GameEvent
-  >;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  gameService: Interpreter<GameStateContext, any, GameEvent>;
 }
 
 export const GameContext = React.createContext<GameContextType>(
