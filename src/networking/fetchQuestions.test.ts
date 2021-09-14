@@ -1,5 +1,5 @@
 import { request } from 'networking/request';
-import { generateFakeQuestionApiResponse, getAnswerFromBool } from 'test-utils';
+import { generateFakeQuestionApiResponse } from 'test-utils';
 import { fetchQuestions } from './fetchQuestions';
 
 jest.mock('networking/request');
@@ -23,9 +23,7 @@ test('returns correctly formatted data', async () => {
   questions.forEach((question, index) => {
     const quesitonFromApi = requestResult.results[index];
     expect(question.category).toEqual(quesitonFromApi.category);
-    expect(getAnswerFromBool(question.correctAnswer)).toEqual(
-      quesitonFromApi.correct_answer
-    );
+    expect(question.correctAnswer).toEqual(quesitonFromApi.correct_answer);
     expect(question.question).toEqual(quesitonFromApi.question);
     expect(question.answer).toBeUndefined();
   });

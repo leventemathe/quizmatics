@@ -18,7 +18,7 @@ const formatResult = (questions: QuestionFromApi[]): Question[] =>
   questions.map((question) => ({
     ...question,
     question: decode(question.question),
-    correctAnswer: question.correct_answer === 'True',
+    correctAnswer: question.correct_answer,
   }));
 
 export const fetchQuestions = async (amount = 10) => {

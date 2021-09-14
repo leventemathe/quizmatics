@@ -11,7 +11,7 @@ export interface GameContext {
 
 export type GameEvent =
   | { type: 'START' }
-  | { type: 'ANSWER'; answer: boolean }
+  | { type: 'ANSWER'; answer: string }
   | { type: 'RESTART' };
 
 const resetCurrentIndex = assign<GameContext, GameEvent>({

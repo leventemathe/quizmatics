@@ -1,6 +1,6 @@
 export interface Question {
   category: string;
   question: string;
-  correctAnswer: boolean;
-  answer?: boolean;
+  correctAnswer: string;
+  answer?: string;
 }

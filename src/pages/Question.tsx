@@ -41,14 +41,14 @@ export const Question = () => {
         <Button
           variant="contained"
           color="primary"
-          onClick={() => send({ type: 'ANSWER', answer: true })}
+          onClick={() => send({ type: 'ANSWER', answer: 'True' })}
         >
           TRUE
         </Button>
         <Button
           variant="contained"
           color="secondary"
-          onClick={() => send({ type: 'ANSWER', answer: false })}
+          onClick={() => send({ type: 'ANSWER', answer: 'False' })}
         >
           FALSE
         </Button>

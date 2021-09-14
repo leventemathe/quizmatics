@@ -1,7 +1,7 @@
 import faker from 'faker';
 import { gameConfig } from 'config';
 
-export const getAnswerFromBool = (bool: boolean) => (bool ? 'True' : 'False');
+const getAnswerFromBool = (bool: boolean) => (bool ? 'True' : 'False');
 
 export const generateFakeQuestions = () => {
   const questions = [];
