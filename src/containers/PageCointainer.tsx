@@ -1,12 +1,15 @@
 import { Error, Loading, Question, Result, Start } from 'pages';
-import { useGameState } from 'state/game';
+import { useIsMatchingGameState } from 'state/game';
 
 export const PageContainer = () => {
-  const { state } = useGameState();
+  const isLoading = useIsMatchingGameState('loading');
+  const isError = useIsMatchingGameState('error');
+  const isPlaying = useIsMatchingGameState('playing');
+  const isFinished = useIsMatchingGameState('finished');
 
-  if (state.matches('loading')) return <Loading />;
-  if (state.matches('error')) return <Error />;
-  if (state.matches('playing')) return <Question />;
-  if (state.matches('finished')) return <Result />;
+  if (isLoading) return <Loading />;
+  if (isError) return <Error />;
+  if (isPlaying) return <Question />;
+  if (isFinished) return <Result />;
   return <Start />;
 };

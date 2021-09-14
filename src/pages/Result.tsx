@@ -1,7 +1,7 @@
 import { Box, Typography } from '@material-ui/core';
 import { styled } from '@material-ui/styles';
 import { CenteredButton, Page } from 'components/ui';
-import { useGameState } from 'state/game';
+import { useGameResult, useQuestions, useSendGameEvent } from 'state/game';
 import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline';
 import RemoveCircleOutlineIcon from '@material-ui/icons/RemoveCircleOutline';
 
@@ -17,8 +17,9 @@ const ResultItem = styled(Box)({
 });
 
 export const Result = () => {
-  const { send, questions, getScore, getTotal, isAnswerCorrect } =
-    useGameState();
+  const { questions, total } = useQuestions();
+  const { score, isAnswerCorrect } = useGameResult();
+  const send = useSendGameEvent();
 
   return (
     <Page>
@@ -26,7 +27,7 @@ export const Result = () => {
         You scored
       </Typography>
       <Typography align="center" variant="h4">
-        {`${getScore()}/${getTotal()}`}
+        {`${score}/${total}`}
       </Typography>
       {questions.map((question) => (
         <ResultItem key={question.question}>

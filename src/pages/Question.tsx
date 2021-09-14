@@ -1,7 +1,7 @@
 import { Box, Button, Card, Typography } from '@material-ui/core';
 import { styled } from '@material-ui/styles';
 import { Page } from 'components/ui';
-import { useGameState } from 'state/game';
+import { useQuestions, useSendGameEvent } from 'state/game';
 
 const QuestionCard = styled(Card)({
   padding: '3rem',
@@ -21,21 +21,21 @@ const ButtonBox = styled(Box)({
 });
 
 export const Question = () => {
-  const { send, questions, currentIndex, getTotal } = useGameState();
-  const question = questions[currentIndex];
+  const { currentQuestion, currentIndex, total } = useQuestions();
+  const send = useSendGameEvent();
 
   return (
     <Page>
       <Typography align="center" variant="h5">
-        {question.category}
+        {currentQuestion.category}
       </Typography>
       <QuestionCard>
         <Typography align="center" variant="h5">
-          {question.question}
+          {currentQuestion.question}
         </Typography>
       </QuestionCard>
       <Typography align="center" variant="body1">
-        {`${currentIndex + 1}/${getTotal()}`}
+        {`${currentIndex + 1}/${total}`}
       </Typography>
       <ButtonBox>
         <Button

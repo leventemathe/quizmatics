@@ -1,10 +1,10 @@
 import { Page, CenteredButton } from 'components/ui';
 import { Typography } from '@material-ui/core';
-import { useGameState } from 'state/game';
+import { useSendGameEvent } from 'state/game';
 import { gameConfig } from 'config';
 
 export const Start = () => {
-  const { send } = useGameState();
+  const send = useSendGameEvent();
 
   return (
     <Page>

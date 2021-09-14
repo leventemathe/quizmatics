@@ -1,9 +1,10 @@
 import { Typography } from '@material-ui/core';
 import { CenteredButton, Page } from 'components/ui';
-import { useGameState } from 'state/game';
+import { useGameError, useSendGameEvent } from 'state/game';
 
 export const Error = () => {
-  const { error, send } = useGameState();
+  const error = useGameError();
+  const send = useSendGameEvent();
 
   return (
     <Page>
