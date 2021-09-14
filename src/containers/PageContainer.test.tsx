@@ -5,7 +5,7 @@ import {
   generateFakeQuestionApiResponse,
   userEvent,
 } from 'test-utils';
-import { request } from 'networking';
+import { request } from 'networking/request';
 import { gameConfig } from 'config';
 
 jest.mock('networking/request');
