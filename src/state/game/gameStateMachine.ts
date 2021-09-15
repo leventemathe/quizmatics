@@ -1,5 +1,4 @@
 import { assign, createMachine } from 'xstate';
-import { gameConfig } from 'config';
 import { GameContext, GameEvent, FetchQuestions } from 'types';
 
 const resetCurrentIndex = assign<GameContext, GameEvent>({
@@ -34,7 +33,7 @@ const canFinishGame = (context: GameContext) => {
   const asnweredQuestions = context.questions.filter(
     (question) => question.answer !== undefined
   );
-  return asnweredQuestions.length === gameConfig.amountOfQuestions;
+  return asnweredQuestions.length === context.questions.length;
 };
 
 export const createGameStateMachine = (fetchQuestions: FetchQuestions) =>
@@ -56,7 +55,7 @@ export const createGameStateMachine = (fetchQuestions: FetchQuestions) =>
           entry: 'resetCurrentIndex',
           invoke: {
             id: 'fetchQuestions',
-            src: () => fetchQuestions(gameConfig.amountOfQuestions),
+            src: () => fetchQuestions(),
             onDone: {
               target: 'playing',
               actions: 'saveQuestions',
