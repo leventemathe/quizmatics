@@ -1,5 +1,5 @@
 import { List, ListItem, Typography } from '@material-ui/core';
-import { styled } from '@material-ui/styles';
+import { styled } from '@material-ui/core/styles';
 import { useGameResult, useQuestions } from 'state/game';
 import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline';
 import RemoveCircleOutlineIcon from '@material-ui/icons/RemoveCircleOutline';
@@ -31,7 +31,7 @@ export const ResultList = () => {
           ) : (
             <RemoveCircleOutlineIcon data-testid="incorrectIcon" />
           )}
-          <Typography variant="h5">{question.question}</Typography>
+          <Typography variant="body1">{question.question}</Typography>
         </ResultItem>
       ))}
     </List>
