@@ -28,17 +28,22 @@ export const generateFakeQuestionApiResponse = () => ({
   results: generateFakeApiQuestions(),
 });
 
-export const generateFakeQuestion = () => ({
+export const generateFakeQuestion = (answer?: string) => ({
   category: faker.name.title(),
   question: faker.name.title(),
   correctAnswer: getAnswerFromBool(faker.datatype.boolean()),
+  answer,
 });
 
-export const generateFakeQuestions = (): Question[] => {
+export const generateFakeQuestions = (withAnswer?: boolean): Question[] => {
   const questions = [];
 
   for (let i = 0; i < gameConfig.amountOfQuestions; i += 1) {
-    questions.push(generateFakeQuestion());
+    questions.push(
+      generateFakeQuestion(
+        withAnswer ? getAnswerFromBool(faker.datatype.boolean()) : undefined
+      )
+    );
   }
 
   return questions;

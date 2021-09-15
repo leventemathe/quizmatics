@@ -1,11 +1,11 @@
-import { Box, Typography } from '@material-ui/core';
+import { List, ListItem, Typography } from '@material-ui/core';
 import { styled } from '@material-ui/styles';
 import { CenteredButton, Page } from 'components/ui';
 import { useGameResult, useQuestions, useSendGameEvent } from 'state/game';
 import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline';
 import RemoveCircleOutlineIcon from '@material-ui/icons/RemoveCircleOutline';
 
-const ResultItem = styled(Box)({
+const ResultItem = styled(ListItem)({
   display: 'flex',
   alignItems: 'center',
 
@@ -26,19 +26,24 @@ export const Result = () => {
       <Typography align="center" variant="h4">
         You scored
       </Typography>
-      <Typography align="center" variant="h4">
+      <Typography data-testid="scoreTitle" align="center" variant="h4">
         {`${score}/${total}`}
       </Typography>
-      {questions.map((question) => (
-        <ResultItem key={question.question}>
-          {isAnswerCorrect(question) ? (
-            <AddCircleOutlineIcon />
-          ) : (
-            <RemoveCircleOutlineIcon />
-          )}
-          <Typography variant="h5">{question.question}</Typography>
-        </ResultItem>
-      ))}
+      <List>
+        {questions.map((question) => (
+          // https://github.com/mui-org/material-ui/issues/14971
+          // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+          // @ts-ignore
+          <ResultItem key={question.question}>
+            {isAnswerCorrect(question) ? (
+              <AddCircleOutlineIcon data-testid="correctIcon" />
+            ) : (
+              <RemoveCircleOutlineIcon data-testid="incorrectIcon" />
+            )}
+            <Typography variant="h5">{question.question}</Typography>
+          </ResultItem>
+        ))}
+      </List>
       <CenteredButton
         variant="contained"
         color="primary"
