@@ -16,7 +16,7 @@ Then run the development version with `yarn dev`.
 
 To run the tests, use `yarn test`, to lint the entire app, run `yarn lint`.
 
-The source code is on [Github](https://github.com/leventemathe/quizmatics), and the app is hosted on [Netlify]().
+The source code is on [Github](https://github.com/leventemathe/quizmatics), and the app is hosted on [Netlify](https://quizmatics.netlify.app).
 
 ## Architecture
 
