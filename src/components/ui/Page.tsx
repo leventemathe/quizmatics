@@ -1,11 +1,11 @@
 import { styled } from '@material-ui/core/styles';
 import { Box } from '@material-ui/core';
 import { ChildrenProps } from 'types';
+import Div100vh from 'react-div-100vh';
 
-const PageStyles = styled(Box)({
+const PageStyles = styled(Div100vh)({
   display: 'grid',
   placeItems: 'center',
-  minHeight: '100vh',
 });
 
 const Content = styled(Box)(({ theme: { breakpoints } }) => ({
