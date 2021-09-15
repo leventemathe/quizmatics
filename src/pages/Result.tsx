@@ -1,6 +1,11 @@
 import { CenteredButton, Page } from 'components/ui';
 import { useSendGameEvent } from 'state/game';
 import { Score, ResultList } from 'components/result';
+import { styled } from '@material-ui/core/styles';
+
+const RestartButton = styled(CenteredButton)({
+  marginBottom: '2rem',
+});
 
 export const Result = () => {
   const send = useSendGameEvent();
@@ -9,13 +14,13 @@ export const Result = () => {
     <Page>
       <Score />
       <ResultList />
-      <CenteredButton
+      <RestartButton
         variant="contained"
         color="primary"
         onClick={() => send('RESTART')}
       >
         PLAY AGAIN?
-      </CenteredButton>
+      </RestartButton>
     </Page>
   );
 };
